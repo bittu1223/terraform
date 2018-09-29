@@ -1,0 +1,34 @@
+jenkins is a continues integration tool, and also its has over 1000+ pluggins, its supprots 
+.net,php,ruby,perl,c++,java,scala and python, 
+It supports platforms:windows,ubuntu,centos,redhat,solaris
+jenkins is easy to intall upgrade and configure
+its Has distributed builds ,monitor external jobs,remote access apis
+There are two types of infrasructure Mutable and Immutable
+
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDvncgGnvrReCb69z2LIOsN1mv3IbHxjFa9VSBXOoYRGS+lP9MheU5q447vvJM5qutNrk0KZYq/ZSwCRMiy9t4sxS4B+AKYeVsz0aqsR1aro7iBdbfr+vpPzJxLgcODR+vc2ZLdr2J+x19GLXPhxNIwROb7mDgnuEFHVb9CFSZ3s7xMhU30BdQPTq+do83MAGhT1RmNU4W+cSKUOTiQiARThb+L0nhKhQyWMv4pe5yttmLMXPPSy77yPXkOxFh6oVnsAhseIfoetNK4BNSrZNDCCRG162SsB+Mmgu5uq02SygPpisEsoV2pobIwMF7oVC40nXku6aXLojMkqwRPMxP9 root@gitclient.example.com
+
+How to install Jenkins Master Node to Slave Node
+
+Here are the commands used in this lesson's demo. They were run on the slave node:
+
+sudo yum -y install git java-1.8.0-openjdk
+sudo useradd -d /var/lib/jenkins jenkins
+ssh-keygen
+As ssh-keygen prompts you, just hit enter for each one to select the defaults.
+
+Next, read the file with the public key and copy its contents to your clipboard:
+
+cat /home/user/.ssh/id_rsa.pub
+Now we've got to make a .ssh directory for the jenkins user, and create an autorized_keys file in there:
+
+sudo mkdir /var/lib/jenkins/.ssh
+sudo vi /var/lib/jenkins/.ssh/authorized_keys
+Paste the contents of id_rsa.pub into authorized_keys and save the file.
+
+We created the directory and file with sudo, and jenkins is who needs to actually own it. Lets' fix that:
+
+sudo chown -R jenkins:jenkins /var/lib/jenkins/.ssh
+Now, we the contents of the file with private key:
+
+cat /home/user/.ssh/id_rsa
